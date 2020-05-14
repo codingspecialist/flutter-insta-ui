@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_cos/constants/size.dart';
 import 'package:instagram_cos/main_page.dart';
+import 'package:instagram_cos/service/facebook_login.dart';
 import 'package:instagram_cos/utils/simple_snack_bar.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
@@ -144,7 +145,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
                 FlatButton.icon(
                     textColor: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      signInFacebook(context);
+                    },
                     icon: ImageIcon(AssetImage("assets/icon/facebook.png")),
                     label: Text("Login with Facebook")),
                 SizedBox(

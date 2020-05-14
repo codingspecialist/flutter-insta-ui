@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_cos/constants/size.dart';
+import 'package:instagram_cos/firebase/firestore_provider.dart';
 import 'package:instagram_cos/utils/profile_img_path.dart';
 import 'package:instagram_cos/widgets/comment.dart';
 import 'package:instagram_cos/widgets/my_progress_indicator.dart';
@@ -16,7 +17,11 @@ class FeedPage extends StatelessWidget {
             color: Colors.black,
             size: 28.0,
           ),
-          onPressed: () {},
+          onPressed: () {
+            firestoreProvider.sendData().then((_){
+              print('data sent to firestore!');
+            });
+          },
         ),
         title: Image.asset(
           'assets/insta_text_logo.png',
@@ -30,7 +35,9 @@ class FeedPage extends StatelessWidget {
               color: Colors.black,
               size: 28.0,
             ),
-            onPressed: () {},
+            onPressed: () {
+              firestoreProvider.getData();
+            },
           ),
           IconButton(
             icon: ImageIcon(
