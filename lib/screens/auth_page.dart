@@ -8,7 +8,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  Widget currentWidget = SignInForm();
+  Widget currentWidget = SigninForm();
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,11 @@ class _AuthPageState extends State<AuthPage> {
         shape: Border(top: BorderSide(color: Colors.grey[300])),
         onPressed: () {
           setState(() {
-            if (currentWidget is SignInForm) {
+            if (currentWidget is SigninForm) {
               // is 는 타입 비교이다.
               currentWidget = SignUpForm();
             } else {
-              currentWidget = SignInForm();
+              currentWidget = SigninForm();
             }
           });
         },
@@ -47,12 +47,12 @@ class _AuthPageState extends State<AuthPage> {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             TextSpan(
-                text: (currentWidget is SignInForm)
+                text: (currentWidget is SigninForm)
                     ? "Don't hava an account?"
                     : "Already have an account?",
                 style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black54)),
             TextSpan(
-                text: (currentWidget is SignInForm) ? "   Sign Up" : "   Sign In",
+                text: (currentWidget is SigninForm) ? "   Sign Up" : "   Sign In",
                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[600])),
           ]),
         ),

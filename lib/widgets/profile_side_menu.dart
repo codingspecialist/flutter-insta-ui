@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_cos/constants/size.dart';
 import 'package:instagram_cos/screens/auth_page.dart';
 
 class ProfileSideMenu extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,8 +31,9 @@ class ProfileSideMenu extends StatelessWidget {
           ),
           FlatButton.icon(
             onPressed: () {
-              final route = MaterialPageRoute(builder: (context) => AuthPage());
-              Navigator.pushReplacement(context, route); // 스택이 쌓이지 않고 화면이 변경된다. pushReplacement
+              FirebaseAuth.instance.signOut();
+//              final route = MaterialPageRoute(builder: (context) => AuthPage());
+//              Navigator.pushReplacement(context, route); // 스택이 쌓이지 않고 화면이 변경된다. pushReplacement
             },
             icon: Icon(Icons.exit_to_app),
             label: Text(
