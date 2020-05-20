@@ -18,9 +18,9 @@ class FeedPage extends StatelessWidget {
             size: 28.0,
           ),
           onPressed: () {
-            firestoreProvider.sendData().then((_){
-              print('data sent to firestore!');
-            });
+//            firestoreProvider.sendData().then((_){
+//              print('data sent to firestore!');
+//            });
           },
         ),
         title: Image.asset(
@@ -36,7 +36,7 @@ class FeedPage extends StatelessWidget {
               size: 28.0,
             ),
             onPressed: () {
-              firestoreProvider.getData();
+              //firestoreProvider.getData();
             },
           ),
           IconButton(

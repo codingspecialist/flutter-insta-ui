@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_cos/constants/size.dart';
+import 'package:instagram_cos/firebase/firestore_provider.dart';
 import 'package:instagram_cos/main_page.dart';
 import 'package:instagram_cos/service/facebook_login.dart';
 import 'package:instagram_cos/utils/simple_snack_bar.dart';
@@ -174,6 +176,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (user == null) {
       simpleSnackbar(context, 'Please try again later!');
     }
+    firestoreProvider.attemptCreateUser(userKey: user.uid, email: _emailConstroller.text);
   }
 
   InputDecoration getTextFieldDecor(String hint) {
