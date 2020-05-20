@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_cos/constants/size.dart';
+import 'package:instagram_cos/data/provider/my_user_data.dart';
 import 'package:instagram_cos/utils/profile_img_path.dart';
 import 'package:instagram_cos/widgets/profile_side_menu.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -20,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
   int _tabIconGridSelected = 0;
   double _gridMargin = 0;
   double _myImgGridMargin = size.width;
+
 
   @override
   void initState() {
@@ -169,12 +172,21 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
     );
   }
 
+  // Consumer와 Provider.of의 차이
+  // Provider.of는 context를 잘 전달해야 하지만, Consumer는 알아서 context를 찾아서 제공해준다.
+  // Provider.of는 listen을 신경써야 한다. 데이터 변경시 아래 위젯의 모든 부분이 rebuild가 되기 때문에
+  // rebuild가 필요없으면 listen:false를 줘야 한다.
+  // Consumer를 쓰면 그 부분만 rebuild가 된다.
   Padding _username() {
     return Padding(
       padding: const EdgeInsets.only(left: common_gap),
-      child: Text(
-        'User Real Name',
-        style: TextStyle(fontWeight: FontWeight.bold),
+      child: Consumer<MyUserData>(
+        builder: (context, myUserData, child){
+          return Text(
+              myUserData.data.username,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          );
+        },
       ),
     );
   }
@@ -245,13 +257,14 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
       );
 
   Row _usernameIconButton() {
+    var myUserData = Provider.of<MyUserData>(context);
     return Row(
       children: <Widget>[
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(left: common_gap),
           child: Text(
-            'codingspecialist',
+            myUserData.data.username,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
         )),
